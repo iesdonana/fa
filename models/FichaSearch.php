@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Ficha;
@@ -57,6 +56,11 @@ class FichaSearch extends Ficha
             // $query->where('0=1');
             return $dataProvider;
         }
+
+        $dataProvider->sort->attributes['director_id'] = [
+            'asc' => ['personas.nombre' => SORT_ASC],
+            'desc' => ['personas.nombre' => SORT_DESC],
+        ];
 
         // grid filtering conditions
         $query->andFilterWhere([
